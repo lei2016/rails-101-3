@@ -19,9 +19,28 @@ def create
   end
 end
 
+def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    flash[:alert] = "Group deleted"
+    redirect_to groups_path
+  end
+
+def edit
+ @post = Post.find(params[:id])
+ end
+
+  def update
+    @post = Post.find(params[:id])
+
+    @post.update(group_params)
+
+    redirect_to groups_path, notice: "Update Success"
+  end
+
 private
 
 def post_params
   params.require(:post).permit(:content)
-end 
+end
 end
